@@ -16,18 +16,27 @@
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
 </head>
-<header>
-    <img src="https://i.ibb.co/r5krrdz/logo.png" alt="" />
-    <nav>
-        <ul>
-            <li>Home</li>
-            <li>Watchlist</li>
-            <li>All Movies</li>
-        </ul>
-    </nav>
-</header>
 
 <body>
+
+    <header class="mainDisplay">
+        <div class="mainDisplay-top">
+            <img src="https://i.ibb.co/r5krrdz/logo.png" alt="Netflix Logo" />
+            <a href="#" class="btn btn-rounded"></a>
+        </div>
+        <div class="mainDisplay-content">
+            <h1>Unlimited movies, TV shows, and more.</h1>
+            <p>Watch anywhere. Cancel Anytime</p>
+            <a href="#" class="btn btn-rounded-xl"></a>
+        </div>
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Watchlist</li>
+                <li>All Movies</li>
+            </ul>
+        </nav>
+    </header>
     <div id="app">
         <div v-if="list.length < 1">Fetching data...</div>
         <div v-else>
