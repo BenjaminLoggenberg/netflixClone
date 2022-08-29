@@ -1,5 +1,9 @@
 console.log('hello world')
 const URL = "https://project-apis.codespace.co.za/api/movies"
+const URL2 = "https://project-apis.codespace.co.za/api/list"
+
+
+
 
 
 const { createApp } = window.Vue
@@ -10,6 +14,18 @@ const getData = () => new Promise((resolve) => {
         .then(names => resolve(names))
 
 })
+
+//example 2 how to print as list
+// fetch(URL, { method: "GET" })
+//     .then(response => response.json())
+//     .then((response) => {
+//         const liElements = response.data
+//             .map((item) => `<li>${item.name}</li>`)
+//             .join('')
+
+//         document.body.innerHTML = `<ul>${liElements}</ul>`
+//     })
+
 
 const component = {
     data() {
@@ -29,16 +45,16 @@ const component = {
         getData().then(resolveData => { this.list = resolveData })
     },
 
-    template: /*HTML - first line cool tip for while data loading*/`
-    <div v-if="list.length < 1">Fetching data...</div> 
-    <div v-else>
-        <input v-model="search">
-        <div> {{ search }} </div>
-            <ul>
-                 <li v-for="item in filteredList"> {{ item }} </li>
-             </ul>
-        </div>
-    `
+    template: /*HTML - first line cool tip for while data loading*/
+    // <div v-if="list.length < 1">Fetching data...</div> 
+    // <div v-else>
+    //     <input v-model="search">
+    //     <div> {{ search }} </div>
+    //         <ul>
+    //              <li v-for="item in filteredList"> {{ item }} </li>
+    //          </ul>
+    //     </div>
+    
 }
 
 window.addEventListener('DOMContentLoaded', () => {

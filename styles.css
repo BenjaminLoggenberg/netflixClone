@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:700,900');
+
+:root {
+    --light: #F5F5F1;
+    --dark: #221F1F;
+    --maroon: #B81D24;
+    --red: #E50914;
+
+}
+
+header {
+    background-color: var(--dark);
+}
