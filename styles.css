@@ -12,7 +12,7 @@
     --dark: #221F1F;
     --maroon: #B81D24;
     --red: #E50914;
-
+    --dark-color: #141414;
 }
 
 body {
@@ -119,23 +119,65 @@ img {
 }
 
 /* Tabs */
+.tabs {
+    background: var(--dark-color);
+    padding-top: 1rem;
+    border-bottom: 3px solid #3d3d3d;
+}
+
+.tabs .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* repeat everything 3 times for 1 fraction*/
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.tabs p {
+    font-size: 1.2rem;
+    padding-top: 0.5rem;
+}
+
+.tabs .container>div:hover {
+    color: #fff;
+    cursor: pointer;
+}
+
+.tab-border {
+    border-bottom: var(--red) 4px solid;
+}
+
+.tabs .container>div {
+    padding: 1.5rem;
+}
+
+/*Container*/
+.container {
+    max-width: 70%;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 2rem;
+    /*zero padding top to bottom, 2rem left to right*/
+}
 
 /*Buttons*/
 .btn {
-    display: inline-block;
+    display: inline-block !important;
     background: var(--red) !important;
     color: #fff !important;
-    padding: 0.4rem 1.3rem;
-    font-size: 1rem;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-    margin-right: 0.5rem;
-    transition: opacity 0.2s ease-in;
-    outline: none;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+    padding: 0.4rem 1.3rem !important;
+    font-size: 1rem !important;
+    text-align: center !important;
+    border: none !important;
+    cursor: pointer !important;
+    margin-right: 0.5rem !important;
+    transition: opacity 0.2s ease-in !important;
+    outline: none !important;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45) !important;
     /*rgb alpha*/
-    border-radius: 2px;
+    border-radius: 2px !important;
+    /*WHY DOES THIS ONLY WORK WITH !IMPORTANT?? */
 }
 
 .btn:hover {
