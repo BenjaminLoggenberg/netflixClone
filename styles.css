@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family: 'Roboto';
+    font-family: 'Arial';
     margin: 0;
     padding: 0;
 }
@@ -62,7 +62,7 @@ img {
     z-index: 1;
     /* on top of everything*/
     background: rgba(0, 0, 0, 0.6);
-    box-shadow: inset 120px 100px 250px #000000;
+    box-shadow: inset 120px 100px 250px #000000, inset -120px -100px 250px #000000;
 }
 
 .mainDisplay-top {
@@ -117,6 +117,8 @@ img {
     margin: 0 0 2rem;
 
 }
+
+/* Tabs */
 
 /*Buttons*/
 .btn {
