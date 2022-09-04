@@ -216,6 +216,32 @@ img {
     background: #222;
 }
 
+.loginForm {
+    display: grid;
+    margin: 1rem;
+    padding: 1rem;
+
+}
+
+label {
+    margin: 0.5rem;
+}
+
+input {
+
+    z-index: 2;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.loginButton {
+    margin: 1rem;
+
+}
+
 /*Container*/
 .container {
     max-width: 70%;
