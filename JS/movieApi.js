@@ -20,7 +20,7 @@ function removeBorder() {
 }
 
 
-
+//API WORK
 // console.log('hello world')
 const URL = "https://project-apis.codespace.co.za/api/movies"
 const URL2 = "https://project-apis.codespace.co.za/api/list"
@@ -28,14 +28,25 @@ const URL2 = "https://project-apis.codespace.co.za/api/list"
 
 
 
-
-export const getData = () => new Promise((resolve) => {
+//Get Data
+const getData = () => new Promise((resolve) => {
     fetch(URL)
         .then(response => response.json())
         .then(json => json.data.map(item => item.name))
         .then(names => resolve(names))
 
 })
+//Get Image
+const getImage = () => new Promise((resolve) => {
+    fetch(URL)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result)
+            Image.src = result.message
+        })
+        .catch(err => console.log(err))
+})
+
 
 //example 2 how to print as list
 // fetch(URL, { method: "GET" })
@@ -48,3 +59,53 @@ export const getData = () => new Promise((resolve) => {
 //         document.body.innerHTML = `<ul>${liElements}</ul>`
 //     })
 
+
+
+//VUE WORK
+const { createApp } = window.Vue
+
+//example 2 how to print as list
+// fetch(URL, { method: "GET" })
+//     .then(response => response.json())
+//     .then((response) => {
+//         const liElements = response.data
+//             .map((item) => `<li>${item.name}</li>`)
+//             .join('')
+
+//         document.body.innerHTML = `<ul>${liElements}</ul>`
+//     })
+
+
+const component = {
+    data() {
+        return {
+            list: [],
+            search: '',
+        }
+    },
+    computed: {
+        filteredList() { //HOW TO FILTER IN Vue
+            return this.list.filter(item => item.includes(this.search))
+        }
+    },
+
+    mounted() {
+        console.log("im mounted")
+        getData().then(resolveData => { this.list = resolveData })
+    },
+    template: /*HTML - first line cool tip for while data loading*/`
+    <div v-if="list.length < 1">Fetching data...</div> 
+    <div v-else>
+        <input v-model="search">
+        <div> {{ search }} </div>
+            <ul>
+                 <li v-for="item in filteredList"> {{ item }} </li>
+             </ul>
+        </div>
+`
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    const app = createApp(component)
+    app.mount('#app')
+})
