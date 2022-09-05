@@ -216,6 +216,30 @@ img {
     background: #222;
 }
 
+
+.thumbnail {
+    height: 300px;
+    width: 55%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+}
+
+.thumbnailDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.movieList {
+    text-align: center;
+    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    flex-direction: row;
+}
+
 .loginForm {
     display: grid;
     margin: 1rem;

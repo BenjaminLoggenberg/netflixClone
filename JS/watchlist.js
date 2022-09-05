@@ -28,14 +28,15 @@ const URL2 = "https://project-apis.codespace.co.za/api/list"
 const Watchlist = []
 
 
-//Get Data
-const getData = () => new Promise((resolve) => {
-    fetch(URL)
-        .then(response => response.json())
-        .then(json => json.data.map(item => item))
-        .then(names => resolve(names))
 
-})
+//Get Data
+// const getData = () => new Promise((resolve) => {
+//     fetch(URL)
+//         .then(response => response.json())
+//         .then(json => json.data.map(item => item))
+//         .then(names => resolve(names))
+
+// })
 
 
 
@@ -79,18 +80,24 @@ const component = {
             let jsonItem = JSON.stringify(item);
             console.log("addedtowatchlist")
             Watchlist.push(jsonItem);
-            localStorage.setItem('movieWatchlist', JSON.stringify(Watchlist));
+            localStorage.setItem('movieWatchlist', Watchlist);
         }
     },
     computed: {
         filteredList() { //HOW TO FILTER IN Vue
+            console.log('outside variable', this.list);
             return this.list.filter(item => item.name.includes(this.search))
         }
     },
 
     mounted() {
         console.log("im mounted")
-        getData().then(resolveData => { this.list = resolveData })
+        let jsString = localStorage.getItem('movieWatchlist');
+        console.log('this is jsString', jsString)
+        console.log(JSON.parse(jsString))
+        return this.list = JSON.parse(jsString);
+
+
     },
     template: /*HTML - first line cool tip for while data loading*/`
     <div v-if="list.length < 1">Fetching data...</div> 
