@@ -8,8 +8,8 @@
     <title>Netflix - Watch TV Shows Online, Watch Movies Online </title>
     <script src="https://kit.fontawesome.com/ad850e39e4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="/CSS/styles.css">
-    <script src="https://unpkg.com/vue@3"></script>
-    <script src="/JS/script.js" defer></script>
+    <script src="https://unpkg.com/vue@3" defer></script>
+    <script src="/JS/login.js" defer></script>
 
 </head>
 
@@ -20,25 +20,25 @@
             <img src="https://i.ibb.co/r5krrdz/logo.png" alt="Netflix Logo" />
             <a href="#" class="btn btn-rounded">Sign In</a>
         </div>
-        <div class="mainDisplay-content">
+        <div class="mainDisplay-content" id="app">
             <h1>THIS IS THE LOGIN PAGE</h1>
             <p>Watch anywhere. Cancel Anytime</p>
 
-            <form action="login" type="submit" class="loginForm text-md">
-                <label for="username">Username</label>
-                <input type="text" name="username" id="">
-                <label for="password">Password</label>
-                <input type="text" name="password" id="">
-                <a href="/HTML/netflixCloneMain.html" class="btn btn-rounded-xl loginButton">Log In</a>
+            <form @submit="submitForm" action="/HTML/netflixCloneMain.html" class="loginForm text-md">
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input v-model="form.username" id="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input v-model="form.password" id="password">
+                </div>
+                <button class="btn btn-rounded-xl loginButton">Submit</button>
+                <!--want to use :disabled="!formIsValid" but not working-->
             </form>
         </div>
-        <nav>
-            <ul>
-                <li>Home</li>
-                <li>Watchlist</li>
-                <li>All Movies</li>
-            </ul>
-        </nav>
+
     </header>
 
 

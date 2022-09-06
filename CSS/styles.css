@@ -247,6 +247,10 @@ img {
 
 }
 
+.error-message {
+    font-size: 0.8rem;
+}
+
 label {
     margin: 0.5rem;
 }
