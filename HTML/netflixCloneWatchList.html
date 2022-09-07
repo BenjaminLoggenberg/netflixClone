@@ -18,7 +18,7 @@
     <header class="mainDisplay">
         <div class="mainDisplay-top">
             <img src="https://i.ibb.co/r5krrdz/logo.png" alt="Netflix Logo" />
-            <a href="#" class="btn btn-rounded">Sign In</a>
+            <a href="/HTML/netflixCloneLogin.html" class="btn btn-rounded">Log Out</a>
         </div>
         <div class="mainDisplay-content">
             <h1>Unlimited movies, TV shows, and more.</h1>
@@ -35,19 +35,20 @@
     </header>
     <section class="tabs">
         <div class="container">
-            <div id="tab-1" class="tab-item tab-border">
-                <i class="fas fa-door-open fa-3x"></i>
-                <p class="hide-sm"><a href="/HTML/netflixCloneMain.html">All movies</a></p>
+            <a href="/HTML/netflixCloneMain.html">
+                <div id="tab-1" class="tab-item">
+                    <i class="fas fa-door-open fa-3x"></i>
+                    <p class="hide-sm">All movies</p>
+                </div>
+            </a>
+            <a href="/HTML/netflixCloneWatchList.html">
+                <div id="tab-2" class="tab-item tab-border">
+                    <i class="fas fa-tablet-alt fa-3x"></i>
+                    <p class="hide-sm">Watchlist</p>
+                </div>
+            </a>
 
-            </div>
-            <div id="tab-2" class="tab-item">
-                <i class="fas fa-tablet-alt fa-3x"></i>
-                <p class="hide-sm"><a href="/HTML/netflixCloneWatchList.html">Watchlist</a></p>
-            </div>
-            <div id="tab-3" class="tab-item">
-                <i class="fas fa-tags fa-3x"></i>
-                <p class="hide-sm">Pick your price</p>
-            </div>
+
         </div>
     </section>
     <section class="tab-content">

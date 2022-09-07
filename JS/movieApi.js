@@ -25,7 +25,7 @@ function removeBorder() {
 const URL = "https://project-apis.codespace.co.za/api/movies"
 const URL2 = "https://project-apis.codespace.co.za/api/list"
 
-const Watchlist = []
+
 
 
 //Get Data
@@ -71,6 +71,7 @@ const component = {
     data() {
         return {
             list: [],
+            watchlist: [],
             search: '',
         }
     },
@@ -78,19 +79,33 @@ const component = {
         addToWatchlist(item) {
             let jsonItem = JSON.stringify(item);
             console.log("addedtowatchlist")
-            Watchlist.push(jsonItem);
-            localStorage.setItem('movieWatchlist', JSON.stringify(Watchlist));
+            this.watchlist.push(jsonItem);
+            localStorage.setItem('movieWatchlist', JSON.stringify(this.watchlist));
+
+        },
+        fetchWatchlist() {
+            let localStorageWatchlist = localStorage.getItem('movieWatchlist')
+            if (!localStorageWatchlist) {
+                return
+            }
+            this.watchlist = JSON.parse(localStorageWatchlist);
         }
     },
     computed: {
         filteredList() { //HOW TO FILTER IN Vue
             return this.list.filter(item => item.name.includes(this.search))
-        }
+        },
+        inWatchlist(name) {
+            console.log('this is name', name)
+            return this.watchlist.filter(movie => (JSON.parse(movie).name !== name)).length
+        },
     },
 
     mounted() {
         console.log("im mounted")
         getData().then(resolveData => { this.list = resolveData })
+        this.fetchWatchlist()
+        console.log('fetchedwatchlist', this.watchlist)
     },
     template: /*HTML - first line cool tip for while data loading*/`
     <div v-if="list.length < 1">Fetching data...</div> 
@@ -102,7 +117,8 @@ const component = {
                  <div class="thumbnailDiv">
                  {{ item.name }} 
                  <img :src="item.image" alt="item.name" class="thumbnail">
-                 <button @click="addToWatchlist(item)" class="btn btn-rounded">Add to Watchlist</button>
+                 <button @click="addToWatchlist(item)" class="btn btn-rounded" v-if="inWatchlist">Remove</button>
+                 <button @click="addToWatchlist(item)" class="btn btn-rounded" v-else>Add To Watchlist</button>
                  </div>
                  </li>
              </ul>

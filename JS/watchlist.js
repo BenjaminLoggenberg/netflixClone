@@ -25,7 +25,6 @@ function removeBorder() {
 const URL = "https://project-apis.codespace.co.za/api/movies"
 const URL2 = "https://project-apis.codespace.co.za/api/list"
 
-const Watchlist = []
 
 
 
@@ -71,36 +70,41 @@ const { createApp } = window.Vue
 const component = {
     data() {
         return {
-            list: [],
+            watchlist: [],
             search: '',
         }
     },
     methods: {
-        addToWatchlist(item) {
-            let jsonItem = JSON.stringify(item);
-            console.log("addedtowatchlist")
-            Watchlist.push(jsonItem);
-            localStorage.setItem('movieWatchlist', Watchlist);
+        fetchWatchlist() {
+            let localStorageWatchlist = localStorage.getItem('movieWatchlist')
+            if (!localStorageWatchlist) {
+                return
+            }
+            let watchlistParsed = JSON.parse(localStorageWatchlist);
+            watchlistParsed.forEach(movie => this.watchlist.push(JSON.parse(movie)))
+        },
+        remWatchlist(movieName) {
+
+            let updatedWatchlist = this.watchlist.filter(movie => movie.name != movieName);
+            localStorage.setItem('movieWatchlist', updatedWatchlist);
         }
     },
     computed: {
         filteredList() { //HOW TO FILTER IN Vue
-            console.log('outside variable', this.list);
-            return this.list.filter(item => item.name.includes(this.search))
+            console.log('outside variable', this.watchlist);
+            return this.watchlist.filter(item => item.name?.includes(this.search))
         }
     },
 
     mounted() {
-        console.log("im mounted")
-        let jsString = localStorage.getItem('movieWatchlist');
-        console.log('this is jsString', jsString)
-        console.log(JSON.parse(jsString))
-        return this.list = JSON.parse(jsString);
-
-
+        this.fetchWatchlist()
+        // console.log("im mounted")
+        // let jsString = localStorage.getItem('movieWatchlist');
+        // let watchlistParsed = JSON.parse(jsString);
+        // watchlistParsed.forEach(movie => this.list.push(JSON.parse(movie)))
     },
     template: /*HTML - first line cool tip for while data loading*/`
-    <div v-if="list.length < 1">Fetching data...</div> 
+    <div v-if="watchlist.length < 1">No Movies Added To Watchlist...</div> 
     <div v-else>
         <input v-model="search">
         <div> {{ search }} </div>
@@ -109,7 +113,7 @@ const component = {
                  <div class="thumbnailDiv">
                  {{ item.name }} 
                  <img :src="item.image" alt="item.name" class="thumbnail">
-                 <button @click="addToWatchlist(item)" class="btn btn-rounded">Add to Watchlist</button>
+                 <button @click="remWatchlist(item.name)" class="btn btn-rounded">Remove</button>
                  </div>
                  </li>
              </ul>

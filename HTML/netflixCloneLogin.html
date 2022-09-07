@@ -28,13 +28,13 @@
 
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input v-model="form.username" id="username">
+                    <input v-model="form.username" id="username" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input v-model="form.password" id="password">
+                    <input v-model="form.password" id="password" required>
                 </div>
-                <button class="btn btn-rounded-xl loginButton">Submit</button>
+                <button class="btn btn-rounded-xl loginButton">Log In</button>
                 <!--want to use :disabled="!formIsValid" but not working-->
             </form>
         </div>
