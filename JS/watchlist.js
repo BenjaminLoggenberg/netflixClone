@@ -83,11 +83,17 @@ const component = {
             let watchlistParsed = JSON.parse(localStorageWatchlist);
             watchlistParsed.forEach(movie => this.watchlist.push(JSON.parse(movie)))
         },
-        remWatchlist(movieName) {
 
-            let updatedWatchlist = this.watchlist.filter(movie => movie.name != movieName);
-            localStorage.setItem('movieWatchlist', updatedWatchlist);
-        }
+        remWatchlist(movieName) {
+            console.log('removedfromwatch', this.watchlist)
+            let updatedWatchlist = this.watchlist.filter(movie => (movie.name !== movieName));
+            this.watchlist = updatedWatchlist //filter creates a new array, re saving updatedWatchlist as the new filtered array
+            console.log(updatedWatchlist)
+            let newArr = updatedWatchlist.map(movie => JSON.stringify(movie))
+            console.log('updatedWatchlist', updatedWatchlist)
+            console.log('newArr', newArr)
+            localStorage.setItem('movieWatchlist', JSON.stringify(newArr));
+        },
     },
     computed: {
         filteredList() { //HOW TO FILTER IN Vue
@@ -107,7 +113,7 @@ const component = {
     <div v-if="watchlist.length < 1">No Movies Added To Watchlist...</div> 
     <div v-else>
         <input v-model="search">
-        <div> {{ search }} </div>
+      
             <ul class="movieList">
                  <li v-for="item in filteredList">
                  <div class="thumbnailDiv">

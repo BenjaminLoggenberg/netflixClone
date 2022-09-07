@@ -89,16 +89,23 @@ const component = {
                 return
             }
             this.watchlist = JSON.parse(localStorageWatchlist);
-        }
+        },
+        inWatchlist(name) {
+            return this.watchlist.filter(movie => (JSON.parse(movie).name === name)).length
+        },
+        remWatchlist(movieName) {
+            console.log('removedfromwatch')
+            let updatedWatchlist = this.watchlist.filter(movie => (JSON.parse(movie).name !== movieName));
+            this.watchlist = updatedWatchlist //filter creates a new array, re saving updatedWatchlist as the new filtered array
+            console.log(updatedWatchlist)
+            localStorage.setItem('movieWatchlist', JSON.stringify(updatedWatchlist));
+        },
     },
     computed: {
         filteredList() { //HOW TO FILTER IN Vue
             return this.list.filter(item => item.name.includes(this.search))
         },
-        inWatchlist(name) {
-            console.log('this is name', name)
-            return this.watchlist.filter(movie => (JSON.parse(movie).name !== name)).length
-        },
+
     },
 
     mounted() {
@@ -111,13 +118,12 @@ const component = {
     <div v-if="list.length < 1">Fetching data...</div> 
     <div v-else>
         <input v-model="search">
-        <div> {{ search }} </div>
             <ul class="movieList">
                  <li v-for="item in filteredList">
                  <div class="thumbnailDiv">
                  {{ item.name }} 
                  <img :src="item.image" alt="item.name" class="thumbnail">
-                 <button @click="addToWatchlist(item)" class="btn btn-rounded" v-if="inWatchlist">Remove</button>
+                 <button @click="remWatchlist(item.name)" class="btn btn-rounded" v-if="inWatchlist(item.name)">Remove</button>
                  <button @click="addToWatchlist(item)" class="btn btn-rounded" v-else>Add To Watchlist</button>
                  </div>
                  </li>
