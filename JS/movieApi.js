@@ -19,7 +19,8 @@ function removeBorder() {
     tabItems.forEach(item => item.classList.remove('tab-border'));
 }
 
-
+let username = JSON.parse(localStorage.getItem('userLogin'))
+document.getElementById('usernameDisplay').innerHTML = username.username
 //API WORK
 // console.log('hello world')
 const URL = "https://project-apis.codespace.co.za/api/movies"
@@ -29,7 +30,7 @@ const URL2 = "https://project-apis.codespace.co.za/api/list"
 
 
 //Get Data
-export const getData = () => new Promise((resolve) => {
+const getData = () => new Promise((resolve) => {
     fetch(URL)
         .then(response => response.json())
         .then(json => json.data.map(item => item))

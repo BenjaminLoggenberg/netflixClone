@@ -5,20 +5,13 @@
 
 
 //Get Data
-const getData2 = () => new Promise((resolve) => {
-    fetch('https://project-apis.codespace.co.za/api/movies')
-        .then(response => response.json())
-        .then(json => json.data.map(item => item))
-        .then(names => resolve(names))
-
-})
 
 
 
 
 
 //VUE WORK
-const { createApp } = window.Vue
+// { createApp } = window.Vue
 
 
 
@@ -26,48 +19,46 @@ const comingSoonComponent = {
     data() {
         return {
             list: [],
+            slide: 0,
+            sliding: null
         }
     },
     methods: {
-
+        onSlideStart(slide) {
+            this.sliding = true
+        },
+        onSlideEnd(slide) {
+            this.sliding = false
+        }
     },
     computed: {
 
         comingSoon() {
-            console.log('this', this.list)
+            console.log('this', this.list.filter(item => !!item.is_coming_soon))
             return this.list.filter(item => !!item.is_coming_soon)
         },
     },
 
     mounted() {
         console.log("im mounted")
-        getData2().then(resolveData => { this.list = resolveData })
+        getData().then(resolveData => { this.list = resolveData })
         console.log('comingSoon', this.list)
 
 
     },
     template: /*HTML - first line cool tip for while data loading*/`
-    <div id="carouselExampleIndicators" class="carousel slide mainDisplay-top" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
-        <div class="carousel-item active"  v-for="item in comingSoon">
-            {{item}}
-            <img class="d-block w-100" :src="item.image" alt="First slide">
+        <div class="carousel-item active">
+            <img class="d-block w-50 " :src="comingSoon[0]?.image" alt="First slide">
         </div>
-
+        <div class="carousel-item">
+            <img class="d-block w-50" :src="comingSoon[1]?.image" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-50" :src="comingSoon[2]?.image" alt="Third slide">
+        </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
 </div>
 `
 }

@@ -85,10 +85,11 @@ img {
 }
 
 .mainDisplay-top a {
-    position: absolute;
-    top: 50%;
+    margin: 2rem;
+    /* position: absolute; */
+    /* top: 50%;
     right: 0;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
 }
 
 .mainDisplay-content {
@@ -307,6 +308,17 @@ input {
 
 .text-dark {
     color: #999;
+}
+
+#usernameDisplay {
+    margin-top: 2rem;
+}
+
+.usernameStyle {
+    display: flex;
+    text-align: center;
+    justify-content: end;
+    margin-right: 2rem;
 }
 
 /*Buttons*/
