@@ -100,6 +100,7 @@ const component = {
             console.log('outside variable', this.watchlist);
             return this.watchlist.filter(item => item.name?.includes(this.search))
         }
+
     },
 
     mounted() {

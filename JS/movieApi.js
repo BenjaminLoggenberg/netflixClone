@@ -29,7 +29,7 @@ const URL2 = "https://project-apis.codespace.co.za/api/list"
 
 
 //Get Data
-const getData = () => new Promise((resolve) => {
+export const getData = () => new Promise((resolve) => {
     fetch(URL)
         .then(response => response.json())
         .then(json => json.data.map(item => item))
@@ -105,6 +105,11 @@ const component = {
         filteredList() { //HOW TO FILTER IN Vue
             return this.list.filter(item => item.name.includes(this.search))
         },
+        comingSoon() {
+            console.log('this', this.list)
+            return this.list.filter(item => !!item.is_coming_soon)
+        },
+
 
     },
 
@@ -112,7 +117,9 @@ const component = {
         console.log("im mounted")
         getData().then(resolveData => { this.list = resolveData })
         this.fetchWatchlist()
-        console.log('fetchedwatchlist', this.watchlist)
+        console.log('comingSoon', this.list)
+
+
     },
     template: /*HTML - first line cool tip for while data loading*/`
     <div v-if="list.length < 1">Fetching data...</div> 
