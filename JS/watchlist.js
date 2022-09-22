@@ -111,10 +111,10 @@ const component = {
         // watchlistParsed.forEach(movie => this.list.push(JSON.parse(movie)))
     },
     template: /*HTML - first line cool tip for while data loading*/`
-    <div v-if="watchlist.length < 1">No Movies Added To Watchlist...</div> 
-    <div v-else>
+    <div v-show="watchlist.length < 1">Fetching data...</div> 
+    <div v-if="watchlist.length > 1">
+    <p class="text-md text-center">Search Movie</p>
         <input v-model="search">
-      
             <ul class="movieList">
                  <li v-for="item in filteredList">
                  <div class="thumbnailDiv">

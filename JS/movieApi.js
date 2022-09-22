@@ -94,6 +94,7 @@ const component = {
         inWatchlist(name) {
             return this.watchlist.filter(movie => (JSON.parse(movie).name === name)).length
         },
+
         remWatchlist(movieName) {
             console.log('removedfromwatch')
             let updatedWatchlist = this.watchlist.filter(movie => (JSON.parse(movie).name !== movieName));
@@ -123,8 +124,9 @@ const component = {
 
     },
     template: /*HTML - first line cool tip for while data loading*/`
-    <div v-if="list.length < 1">Fetching data...</div> 
-    <div v-else>
+    <div v-show="list.length < 1">Fetching data...</div> 
+    <div v-if="list.length > 1">
+    <p class="text-md text-center">Search Movie</p>
         <input v-model="search">
             <ul class="movieList">
                  <li v-for="item in filteredList">

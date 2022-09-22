@@ -321,6 +321,22 @@ input {
     margin-right: 2rem;
 }
 
+.carousel {
+
+    position: relative;
+    max-height: 200px;
+    display: flex;
+    margin: auto;
+    max-width: 50%;
+}
+
+.comingSoonText {
+    color: #fff !important;
+    position: absolute;
+    z-index: 2;
+    left: 43%
+}
+
 /*Buttons*/
 
 .btn {

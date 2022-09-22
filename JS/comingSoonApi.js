@@ -47,18 +47,21 @@ const comingSoonComponent = {
 
     },
     template: /*HTML - first line cool tip for while data loading*/`
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img class="d-block w-50 " :src="comingSoon[0]?.image" alt="First slide">
-        </div>
-        <div class="carousel-item">
-            <img class="d-block w-50" :src="comingSoon[1]?.image" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-            <img class="d-block w-50" :src="comingSoon[2]?.image" alt="Third slide">
-        </div>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <p class="comingSoonText">Coming Soon</p>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img :src="comingSoon[0]?.image" class="d-block w-100" alt="...">
+     
     </div>
+    <div class="carousel-item">
+      <img :src="comingSoon[1]?.image" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img :src="comingSoon[2]?.image" class="d-block w-100" alt="...">
+    </div>
+  </div>
+ 
 </div>
 `
 }
